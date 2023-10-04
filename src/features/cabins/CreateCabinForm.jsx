@@ -50,6 +50,7 @@ function CreateCabinForm() {
         <Input
           type="text"
           id="name"
+          disabled={isLoading}
           {...register("name", { required: "This field is required" })}
         />
       </FormRow>
@@ -58,6 +59,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="maxCapacity"
+          disabled={isLoading}
           {...register("maxCapacity", {
             required: "This field is required",
             min: {
@@ -72,6 +74,7 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="regularPrice"
+          disabled={isLoading}
           {...register("regularPrice", {
             required: "This field is required",
             min: {
@@ -86,11 +89,12 @@ function CreateCabinForm() {
         <Input
           type="number"
           id="discount"
+          disabled={isLoading}
           defaultValue={0}
           {...register("discount", {
             required: "This field is required",
             validate: (value) =>
-              value < getValues().regularPrice ||
+              value <= getValues().regularPrice ||
               "Discount should be less than the regular price",
           })}
         />
@@ -103,13 +107,13 @@ function CreateCabinForm() {
         <Textarea
           type="number"
           id="description"
+          disabled={isLoading}
           defaultValue=""
           {...register("description", { required: "This field is required" })}
         />
       </FormRow>
 
-      <FormRow>
-        {/* <Label htmlFor="image">Cabin photo</Label> */}
+      <FormRow label="Cabin photo">
         <FileInput id="image" accept="image/*" />
       </FormRow>
 
