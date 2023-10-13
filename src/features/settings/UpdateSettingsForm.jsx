@@ -12,10 +12,8 @@ function UpdateSettingsForm() {
   if (isLoading) return <Spinner />;
 
   function handleUpdate(e, field) {
-    console.log(field);
     const { value } = e.target;
     if (!value) return;
-    console.log(value);
 
     updateSetting({ [field]: value });
   }
