@@ -2,7 +2,7 @@ import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
-import useModalOutsideClikc from "../hooks/useModalOutsideClikc";
+import useOutsideClikc from "../hooks/useOutsideClikc";
 
 const StyledModal = styled.div`
   position: fixed;
@@ -92,7 +92,7 @@ function Window({ children, name }) {
   //   return () => document.removeEventListener("click", handleClick, true);
   // }, [close]);
 
-  const { ref } = useModalOutsideClikc(close);
+  const { ref } = useOutsideClikc(close);
 
   if (name !== openName) return null;
 

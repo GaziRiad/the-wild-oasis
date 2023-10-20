@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function useModalOutsideClikc(handler, listenCapturing = true) {
+function useOutsideClikc(handler, listenCapturing = true) {
   const ref = useRef();
   useEffect(() => {
     function handleClick(e) {
@@ -19,4 +19,4 @@ function useModalOutsideClikc(handler, listenCapturing = true) {
   return { ref };
 }
 
-export default useModalOutsideClikc;
+export default useOutsideClikc;
