@@ -7,7 +7,7 @@ export async function getBookings({ filter, sortBy }) {
     .select("*, cabins(name), guests(fullName, email)");
 
   // Filtered
-  if (filter.field) {
+  if (filter !== null) {
     query = query[filter.method || "eq"](filter.field, filter.value);
   }
 
