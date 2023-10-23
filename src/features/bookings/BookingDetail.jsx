@@ -12,6 +12,7 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import Spinner from "../../ui/Spinner";
 import useBooking from "./useBooking";
 import { useNavigate } from "react-router-dom";
+import { useCheckOut } from "../check-in-out/useCheckOut";
 
 const HeadingGroup = styled.div`
   display: flex;
@@ -25,6 +26,12 @@ function BookingDetail() {
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
+
+  const { isCheckingOut, checkinOut } = useCheckOut();
+
+  function handleCheckinOut() {
+    checkinOut(bookingId);
+  }
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -50,6 +57,11 @@ function BookingDetail() {
         {status === "unconfirmed" && (
           <Button onClick={() => navigate(`/checkin/${bookingId}`)}>
             Check in
+          </Button>
+        )}
+        {status === "checked-in" && (
+          <Button onClick={handleCheckinOut} disabled={isCheckingOut}>
+            Check out
           </Button>
         )}
         <Button variation="secondary" onClick={moveBack}>
