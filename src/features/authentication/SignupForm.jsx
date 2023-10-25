@@ -3,6 +3,7 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
+import useSignUp from "./useSignUp";
 
 // Email regex: /\S+@\S+\.\S+/
 
@@ -11,11 +12,18 @@ function SignupForm() {
     register,
     handleSubmit,
     getValues,
+    reset,
     formState: { errors },
   } = useForm();
 
+  const { isLoading, signup } = useSignUp();
+
   function onSubmit(data) {
     console.log(data);
+    signup(
+      { fullName: data.fullName, email: data.email, password: data.password },
+      { onSettled: () => reset() }
+    );
   }
 
   return (
@@ -76,7 +84,7 @@ function SignupForm() {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button>Create new user</Button>
+        <Button disabled={isLoading}>Create new user</Button>
       </FormRow>
     </Form>
   );
