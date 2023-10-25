@@ -10,11 +10,11 @@ function useLogin() {
   const { isLoading, mutate: login } = useMutation({
     mutationFn: ({ email, password }) => loginApi({ email, password }),
     onSuccess: (user) => {
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
 
       // We don't need to check the session and then get the current user at this point since the user has just loged ikn
       // so we store directly the user into the cache (Not really necessary just for better UX)
-      queryClient.setQueriesData(["user"], user);
+      queryClient.setQueryData(["user"], user.user);
     },
     onError: (err) => {
       console.log("Error", err);
