@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [email, setEmail] = useState("riadhallouch447@gmail.com");
-  const [password, setPassword] = useState("let'sdoit");
+  const [password, setPassword] = useState("12345678");
 
   const { isLoading, login } = useLogin();
   const { isAuthenticated } = useUser();
