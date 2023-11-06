@@ -17,7 +17,7 @@ function useRecentStays() {
 
   const confirmedStays = stays?.filter((stay) => stay.status !== "unconfirmed");
 
-  return { stays, isLoading, confirmedStays };
+  return { stays, isLoading, confirmedStays, numDays };
 }
 
 export default useRecentStays;
