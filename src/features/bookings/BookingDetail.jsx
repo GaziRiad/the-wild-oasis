@@ -17,6 +17,8 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import useDeleteBooking from "./useDeleteBooking";
 
+import Empty from "../../ui/Empty";
+
 const HeadingGroup = styled.div`
   display: flex;
   gap: 2.4rem;
@@ -45,7 +47,7 @@ function BookingDetail() {
   const { isDeleting, deleteBookingApi } = useDeleteBooking();
 
   if (isLoading) return <Spinner />;
-
+  if (!booking) return <Empty resourceName="booking" />;
   return (
     <>
       <Row type="horizontal">
